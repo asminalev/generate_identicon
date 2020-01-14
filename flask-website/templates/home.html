@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>First Flask App</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <title>Identicon generator: generate your identicon avatar</title>
+
+		<link href="static/css/sticky-footer.css" rel="stylesheet">
+</head>
+
+<script>
+
+function myFunction() {
+var text= $('#text').val();
+  $.ajax({
+              url: "/join",
+              type: "POST",
+              data: {text:text}
+
+          }).done(function(response) {
+
+            var html= "<br><br><br><p> <b> RESULT : <b><p>";
+
+            response =response.result;
+                 $.each(response,function(key,val){
+                 console.log(val);
+                    html+="<p>"+val+"<p>"
+
+                });
+                html +="<br>";
+                $(".show-data").append(html);
+            });
+};
+
+  </script>
+
+<body>
+	<div class="text-center">
+				<h1 class=" banner text-center"> Generate an Identicon</h1>
+	</div>
+
+    <div class="text-box">
+
+        <p>
+             <br>
+                Enter the text  <input type="text" id="text" name="text"><br><br>
+                 <button id="clicked" onclick="myFunction()">Send</button>
+             </p>
+
+
+	</div>
+
+            
+    <div class="show-data" >
+
+
+
+    </div>
+
+    
+</body>
+</html>
+
+
